@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RegisTrack | Matrícula académica</title>
+    <meta
+      name="description"
+      content="Acceso de estudiantes a RegisTrack, el sistema de matrícula académica."
+    />
+    <meta name="theme-color" content="#1762a8" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link
+      rel="icon"
+      href="./src/assets/icons/app-icon.svg"
+      type="image/svg+xml"
+    />
+    <link rel="stylesheet" href="./src/styles/styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="brand-header">
+        <a class="brand-mark" href="./" aria-label="RegisTrack, inicio">
+          <span class="brand-symbol" aria-hidden="true">R</span>
+          <span>RegisTrack</span>
+        </a>
+        <span class="term-label">PORTAL ESTUDIANTIL</span>
+      </header>
+
+      <section class="access-layout" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow">MATRÍCULA ACADÉMICA</p>
+          <h1 id="page-title">Tu próximo periodo empieza aquí.</h1>
+          <p class="intro-detail">
+            Accede con tu cuenta institucional para continuar.
+          </p>
+          <p
+            id="connectionStatus"
+            class="status-message"
+            role="status"
+            aria-live="polite"
+          >
+            Comprobando conexión…
+          </p>
+        </div>
+
+        <section id="authPanel" class="auth-panel" aria-labelledby="auth-title">
+          <p class="panel-kicker">CUENTA ESTUDIANTIL</p>
+          <h2 id="auth-title">Iniciar sesión</h2>
+          <p class="panel-detail">Usa tu correo y contraseña para acceder.</p>
+          <form id="authForm">
+            <label for="authEmail">Correo electrónico</label>
+            <input
+              id="authEmail"
+              name="email"
+              type="email"
+              autocomplete="email"
+              inputmode="email"
+              maxlength="254"
+              required
+            />
+            <label for="authPassword">Contraseña</label>
+            <input
+              id="authPassword"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              minlength="6"
+              required
+            />
+            <div class="form-actions">
+              <button class="primary-button" type="submit" value="signin">
+                Iniciar sesión
+              </button>
+              <button class="secondary-button" type="submit" value="create">
+                Crear cuenta
+              </button>
+            </div>
+          </form>
+          <p
+            id="authStatus"
+            class="status-message"
+            role="status"
+            aria-live="polite"
+          >
+            Conectando con Firebase Authentication…
+          </p>
+        </section>
+
+        <section
+          id="sessionPanel"
+          class="auth-panel session-panel"
+          aria-labelledby="session-title"
+          hidden
+        >
+          <p class="panel-kicker">SESIÓN ACTIVA</p>
+          <h2 id="session-title">Acceso confirmado</h2>
+          <p id="signedInEmail" class="account-email"></p>
+          <p class="panel-detail">
+            Tu cuenta está autenticada para gestionar tus comprobantes.
+          </p>
+          <button id="signOutButton" class="secondary-button" type="button">
+            Cerrar sesión
+          </button>
+        </section>
+      </section>
+
+      <section
+        id="enrollmentPanel"
+        class="enrollment-area"
+        aria-labelledby="enrollment-title"
+        hidden
+      >
+        <div class="enrollment-heading">
+          <div>
+            <p class="eyebrow">NUEVO REGISTRO</p>
+            <h2 id="enrollment-title">Registrar matrícula</h2>
+          </div>
+          <p class="enrollment-note">
+            El comprobante se guarda en este dispositivo antes de sincronizarse.
+          </p>
+        </div>
+
+        <section class="fcm-panel" aria-labelledby="fcm-title">
+          <div class="fcm-panel-heading">
+            <div>
+              <p class="panel-kicker">NOTIFICACIONES DEL DISPOSITIVO</p>
+              <h3 id="fcm-title">Firebase Cloud Messaging</h3>
+            </div>
+            <p class="fcm-description">
+              Autoriza este navegador para obtener su token de notificaciones.
+            </p>
+          </div>
+          <button
+            id="authorizeFcmButton"
+            class="secondary-button fcm-button"
+            type="button"
+            disabled
+          >
+            Autorizar y obtener token FCM
+          </button>
+          <label for="fcmToken">Token de este dispositivo</label>
+          <textarea
+            id="fcmToken"
+            rows="3"
+            readonly
+            spellcheck="false"
+            placeholder="El token aparecerá aquí después de autorizar las notificaciones."
+          ></textarea>
+          <p
+            id="fcmStatus"
+            class="status-message"
+            role="status"
+            aria-live="polite"
+          >
+            El permiso solo se solicitará cuando pulses el botón.
+          </p>
+        </section>
+
+        <form id="enrollmentForm" class="enrollment-form">
+          <div class="field-group">
+            <label for="enrollmentName">Nombre del estudiante</label>
+            <input
+              id="enrollmentName"
+              name="studentName"
+              type="text"
+              autocomplete="name"
+              minlength="2"
+              maxlength="100"
+              required
+            />
+          </div>
+          <div class="field-group">
+            <label for="enrollmentProgram">Programa académico</label>
+            <input
+              id="enrollmentProgram"
+              name="program"
+              type="text"
+              minlength="2"
+              maxlength="100"
+              required
+            />
+          </div>
+          <div class="field-group">
+            <label for="enrollmentPeriod">Periodo académico</label>
+            <input
+              id="enrollmentPeriod"
+              name="academicPeriod"
+              type="text"
+              placeholder="Ej. 2026-2"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+          </div>
+          <button
+            id="enrollmentSubmitButton"
+            class="primary-button enrollment-submit"
+            type="submit"
+          >
+            Registrar estudiante
+          </button>
+        </form>
+
+        <p
+          id="enrollmentStatus"
+          class="status-message"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <article
+          id="comprobante-card"
+          class="receipt-panel"
+          aria-labelledby="receipt-title"
+          hidden
+        >
+          <div class="receipt-heading">
+            <p class="panel-kicker">COMPROBANTE DE CONFIRMACIÓN</p>
+            <span class="receipt-mark" aria-hidden="true">✓</span>
+          </div>
+          <h3 id="receipt-title">Tu matrícula ha sido registrada con éxito</h3>
+          <div class="receipt-content">
+            <dl class="receipt-details">
+              <div>
+                <dt>Estudiante</dt>
+                <dd id="receiptStudent"></dd>
+              </div>
+              <div>
+                <dt>Programa</dt>
+                <dd id="receiptProgram"></dd>
+              </div>
+              <div>
+                <dt>Periodo</dt>
+                <dd id="receiptPeriod"></dd>
+              </div>
+              <div>
+                <dt>Código de Registro</dt>
+                <dd><code id="receiptCode" class="receipt-code"></code></dd>
+              </div>
+              <div class="confirmation-id-row">
+                <dt>ID de Confirmación</dt>
+                <dd>
+                  <code id="receiptConfirmationId" class="receipt-code"></code>
+                </dd>
+              </div>
+            </dl>
+            <div class="receipt-qr-column">
+              <div
+                id="receiptQr"
+                class="receipt-qr"
+                role="img"
+                aria-label="Código QR del ID de confirmación"
+              ></div>
+              <p
+                id="receiptQrStatus"
+                class="receipt-qr-status"
+                aria-live="polite"
+              ></p>
+              <button
+                id="downloadReceiptPdfButton"
+                class="secondary-button receipt-pdf-button"
+                type="button"
+              >
+                Descargar PDF
+              </button>
+            </div>
+          </div>
+          <p id="receiptLocalStatus" class="status-message"></p>
+          <div class="receipt-offline-banner">
+            <span aria-hidden="true">✓</span>
+            <strong>Guardado en tu dispositivo (Acceso Offline)</strong>
+          </div>
+          <p
+            id="receiptCloudStatus"
+            class="status-message"
+            role="status"
+            aria-live="polite"
+          ></p>
+          <p
+            id="receiptDigitalSignature"
+            class="receipt-digital-signature"
+            hidden
+          ></p>
+        </article>
+
+        <section class="enrollment-history" aria-labelledby="history-title">
+          <h3 id="history-title">Tus comprobantes</h3>
+          <ul id="enrollmentList" class="enrollment-list"></ul>
+        </section>
+      </section>
+
+      <footer class="offline-tools" aria-label="Estado offline">
+        <div>
+          <p
+            id="serviceWorkerStatus"
+            class="status-message"
+            role="status"
+            aria-live="polite"
+          >
+            Preparando acceso sin conexión…
+          </p>
+          <p
+            id="cacheStatus"
+            class="status-message"
+            role="status"
+            aria-live="polite"
+          >
+            Los recursos se guardarán después de la primera carga con conexión.
+          </p>
+        </div>
+        <button
+          id="updateCacheButton"
+          class="text-button"
+          type="button"
+          disabled
+        >
+          Actualizar copia offline
+        </button>
+      </footer>
+    </main>
+
+    <script src="./src/scripts/config/firebase-config.js" defer></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+      defer
+    ></script>
+    <script src="./src/scripts/app.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(ownerUid) {
+      return isAuthenticated() && request.auth.uid == ownerUid;
+    }
+
+    function hasValidEnrollmentFields(data) {
+      return data.keys().hasAll([
+          'ownerUid',
+          'studentName',
+          'program',
+          'academicPeriod',
+          'createdAt'
+        ]) &&
+        data.keys().hasOnly([
+          'ownerUid',
+          'studentName',
+          'program',
+          'academicPeriod',
+          'createdAt'
+        ]) &&
+        data.ownerUid is string &&
+        data.ownerUid.size() > 0 &&
+        data.ownerUid.size() <= 128 &&
+        data.studentName is string &&
+        data.studentName.size() >= 2 &&
+        data.studentName.size() <= 100 &&
+        data.program is string &&
+        data.program.size() >= 2 &&
+        data.program.size() <= 100 &&
+        data.academicPeriod is string &&
+        data.academicPeriod.size() >= 2 &&
+        data.academicPeriod.size() <= 30 &&
+        data.createdAt is timestamp;
+    }
+
+    match /matriculas/{enrollmentId} {
+      allow get: if isAuthenticated() &&
+        (resource == null || isOwner(resource.data.ownerUid));
+      allow list: if isOwner(resource.data.ownerUid);
+      allow create: if isAuthenticated() &&
+        request.resource.data.ownerUid == request.auth.uid &&
+        enrollmentId.matches('^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$') &&
+        hasValidEnrollmentFields(request.resource.data) &&
+        request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

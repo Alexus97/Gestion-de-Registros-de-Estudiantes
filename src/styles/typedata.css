@@ -1,0 +1,198 @@
+/* Encabezado 
+header {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 25px -5px rgb(37 99 235 / 30%);
+  text-align: center;
+}
+
+header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  opacity: 0.9;
+  font-size: 1rem;
+}*/
+
+/* Disposición del inventario 
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  min-width: 0;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 5%);
+}
+
+.card-title {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #eff6ff;
+  padding-bottom: 0.5rem;
+}*/
+
+/* Formulario e inputs 
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-dark);
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--primary);
+}
+
+.btn {
+  width: 100%;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 0.95rem;
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+}
+
+button:focus-visible {
+  outline: 3px solid rgb(37 99 235 / 35%);
+  outline-offset: 2px;
+}*/
+
+/* Tablas 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+th,
+td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+}
+
+th {
+  background-color: #f8fafc;
+  color: var(--text-muted);
+  font-weight: 600;
+}*/
+
+/*
+  Estilos de insignias: esta sección de inventario no usa elementos .badge.
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge-danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+*/
+
+/*
+  Estilos de la consola: su sección está comentada en index.html.
+.console-card {
+  grid-column: span 2;
+  background: var(--code-bg);
+  color: #f8fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+@media (max-width: 768px) {
+  .console-card {
+    grid-column: span 1;
+  }
+}
+
+.console-header {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 0.5rem;
+}
+
+.console-log {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.log-line {
+  margin-bottom: 0.4rem;
+}
+
+.log-info {
+  color: #60a5fa;
+}
+
+.log-success {
+  color: #34d399;
+}
+
+.log-warning {
+  color: #fbbf24;
+}
+*/

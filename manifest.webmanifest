@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "RegisTrack PWA",
+  "short_name": "RegisTrack",
+  "description": "Acceso estudiantil al sistema de matrícula académica.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f4ed",
+  "theme_color": "#1762a8",
+  "icons": [
+    {
+      "src": "src/assets/icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
